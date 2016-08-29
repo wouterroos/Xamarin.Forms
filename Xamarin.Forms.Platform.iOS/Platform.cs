@@ -172,16 +172,6 @@ namespace Xamarin.Forms.Platform.iOS
 
 		Page Page { get; set; }
 
-		Application TargetApplication
-		{
-			get
-			{
-				if (Page == null)
-					return null;
-				return Page.RealParent as Application;
-			}
-		}
-
 		void IDisposable.Dispose()
 		{
 			if (_disposed)
@@ -327,7 +317,7 @@ namespace Xamarin.Forms.Platform.iOS
 		internal void DidAppear()
 		{
 			_animateModals = false;
-			TargetApplication.NavigationProxy.Inner = this;
+			Application.Current.NavigationProxy.Inner = this;
 			_animateModals = true;
 		}
 
@@ -411,7 +401,7 @@ namespace Xamarin.Forms.Platform.iOS
 
 			Page.DescendantRemoved += HandleChildRemoved;
 
-			TargetApplication.NavigationProxy.Inner = this;
+			Application.Current.NavigationProxy.Inner = this;
 		}
 
 		internal void WillAppear()
