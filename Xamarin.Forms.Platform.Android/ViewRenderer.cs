@@ -77,6 +77,9 @@ namespace Xamarin.Forms.Platform.Android
 				if (Control != null && ManageNativeControlLifetime)
 				{
 					Control.RemoveFromParent();
+					if (Control.GetType().Name.Contains("Map")) {
+						System.Diagnostics.Debug.WriteLine($"Calling Dispose on {Control.GetType()} from ViewRenderer");
+					}
 					Control.Dispose();
 					Control = null;
 				}
