@@ -29,7 +29,25 @@ namespace Xamarin.Forms.Controls
 		}
 	}
 
-	public class Bz39489Content : ContentPage 
+	public class MyXFMap : Map
+	{
+		static int s_count;
+
+		public MyXFMap()
+		{
+			Interlocked.Increment(ref s_count);
+			System.Diagnostics.Debug.WriteLine($"++++++++ {nameof(MyXFMap)} : {s_count}");
+		}
+
+		~MyXFMap()
+		{
+			Interlocked.Decrement(ref s_count);
+			System.Diagnostics.Debug.WriteLine($"++++++++ {nameof(MyXFMap)} : {s_count}");
+		}
+	}
+
+	[Preserve(AllMembers = true)]
+	public class Bz39489Content : ContentPage
 	{
 		static int s_count;
 

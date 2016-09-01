@@ -229,6 +229,9 @@ namespace Xamarin.Forms.Platform.Android
 
 			if (disposing)
 			{
+				SetOnClickListener(null);
+				SetOnTouchListener(null);
+
 				if (Tracker != null)
 				{
 					Tracker.Dispose();

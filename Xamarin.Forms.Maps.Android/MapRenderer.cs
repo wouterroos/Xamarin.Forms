@@ -28,13 +28,11 @@ namespace Xamarin.Forms.Maps.Android
 			System.Diagnostics.Debug.WriteLine($"++++++++ {nameof(MyMapView)} : {s_count}");
 		}
 
-
 		public MyMapView(Context context, IAttributeSet attrs) : base(context, attrs)
 		{
 			Interlocked.Increment(ref s_count);
 			System.Diagnostics.Debug.WriteLine($"++++++++ {nameof(MyMapView)} : {s_count}");
 		}
-
 
 		public MyMapView(Context context, IAttributeSet attrs, int defStyle) : base(context, attrs, defStyle)
 		{
@@ -42,11 +40,16 @@ namespace Xamarin.Forms.Maps.Android
 			System.Diagnostics.Debug.WriteLine($"++++++++ {nameof(MyMapView)} : {s_count}");
 		}
 
-
 		public MyMapView(Context context, GoogleMapOptions options) : base(context, options)
 		{
 			Interlocked.Increment(ref s_count);
 			System.Diagnostics.Debug.WriteLine($"++++++++ {nameof(MyMapView)} : {s_count}");
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			base.Dispose(disposing);
+			System.Diagnostics.Debug.WriteLine(">>>>>>>> MyMapView Dispose called");
 		}
 
 		~MyMapView()
@@ -106,6 +109,7 @@ namespace Xamarin.Forms.Maps.Android
 
 			var mapView = CreateNativeControl();
 			System.Diagnostics.Debug.WriteLine(s_bundle);
+
 			mapView.OnCreate(s_bundle);
 			mapView.OnResume();
 			SetNativeControl(mapView);
@@ -141,7 +145,7 @@ namespace Xamarin.Forms.Maps.Android
 				//map.UiSettings.ZoomGesturesEnabled = Map.HasZoomEnabled;
 				//map.UiSettings.ScrollGesturesEnabled = Map.HasScrollEnabled;
 				//map.MyLocationEnabled = map.UiSettings.MyLocationButtonEnabled = Map.IsShowingUser;
-				SetMapType();
+				//SetMapType();
 			}
 
 			//MessagingCenter.Subscribe<Map, MapSpan>(this, MoveMessageName, OnMoveToRegionMessage, Map);

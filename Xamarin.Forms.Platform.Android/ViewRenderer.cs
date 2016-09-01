@@ -80,6 +80,9 @@ namespace Xamarin.Forms.Platform.Android
 					if (Control.GetType().Name.Contains("Map")) {
 						System.Diagnostics.Debug.WriteLine($"Calling Dispose on {Control.GetType()} from ViewRenderer");
 					}
+
+					Control.OnFocusChangeListener = null;
+
 					Control.Dispose();
 					Control = null;
 				}
